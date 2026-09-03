@@ -76,4 +76,4 @@ export const BRAND = process.env.NEXT_PUBLIC_BRAND ?? "MezMenu";
 
 /** Standard package price, display only. */
 export const PRICE_STANDARD =
-  process.env.NEXT_PUBLIC_PRICE_STANDARD ?? "PKR 4,000";
+  process.env.NEXT_PUBLIC_PRICE_STANDARD ?? "PKR 3,999";

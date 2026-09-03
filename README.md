@@ -5,7 +5,7 @@ QR menus for restaurants. An owner types their menu once, publishes it to
 phone. Diners scan, browse, and send an order straight to the restaurant's
 WhatsApp.
 
-Package: **Standard, PKR 4,000/month.** Text menus only (no item photos),
+Package: **Standard, PKR 3,999/month.** Text menus only (no item photos),
 WhatsApp-handoff ordering, deal banner, sold-out toggle, per-table QR codes.
 
 ## Stack

@@ -48,6 +48,7 @@
   --color-danger: var(--danger);
   --color-ok: var(--ok);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, "Times New Roman", serif;
   --radius-card: var(--radius);
 }
 

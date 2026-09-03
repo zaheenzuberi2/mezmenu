@@ -1,6 +1,7 @@
 /**
- * Seeds one published demo restaurant so /m/demo-diner renders with real data.
- * Idempotent: clears and recreates the demo rows each run.
+ * Seeds published demo restaurants so the /m/<slug> pages and the landing
+ * page's "live examples" render with real data. Idempotent: clears and
+ * recreates the demo rows each run.
  *
  *   node scripts/seed-demo.mjs
  */
@@ -22,16 +23,14 @@ const db = createClient(
 );
 
 const DEMO_EMAIL = "demo-owner@mezmenu.local";
-const SLUG = "demo-diner";
 
-// 1. A demo owner user
+// one shared demo owner
 let ownerId;
 {
   const { data: list } = await db.auth.admin.listUsers({ page: 1, perPage: 200 });
   const existing = list.users.find((u) => u.email === DEMO_EMAIL);
-  if (existing) {
-    ownerId = existing.id;
-  } else {
+  if (existing) ownerId = existing.id;
+  else {
     const { data, error } = await db.auth.admin.createUser({
       email: DEMO_EMAIL,
       password: "demo-" + Math.random().toString(36).slice(2),
@@ -42,94 +41,149 @@ let ownerId;
   }
 }
 
-// 2. Reset the demo restaurant
-await db.from("restaurants").delete().eq("slug", SLUG);
-const { data: r, error: rErr } = await db
-  .from("restaurants")
-  .insert({
-    owner_id: ownerId,
-    slug: SLUG,
+/** [name, description, price, available, featured, price_note] */
+const DEMOS = [
+  {
+    slug: "demo-diner",
     name: "Al-Rehman Tikka House",
     tagline: "Charcoal BBQ · Gulberg, Lahore",
     announcement: "Ramadan deal: Iftar platter for two — Rs 1,499",
     brand_color: "#7c2d12",
     whatsapp_number: "923001234567",
     ordering_enabled: true,
-    is_published: true,
-  })
-  .select()
-  .single();
-if (rErr) throw rErr;
-
-// 3. Categories + items
-const menu = [
-  {
-    name: "BBQ",
-    items: [
-      ["Chicken Tikka", "Full leg piece, charcoal grilled", 320, true, true],
-      ["Beef Seekh Kabab", "Per skewer", 260, true, false],
-      ["Malai Boti", "Half kg", 850, true, true],
-      ["Chicken Reshmi Kabab", "Per skewer", 240, false, false],
+    menu: [
+      ["BBQ", [
+        ["Chicken Tikka", "Full leg piece, charcoal grilled", 320, true, true],
+        ["Beef Seekh Kabab", "Per skewer", 260, true, false],
+        ["Malai Boti", "Half kg", 850, true, true],
+        ["Chicken Reshmi Kabab", "Per skewer", 240, false, false],
+      ]],
+      ["Karahi & Handi", [
+        ["Chicken Karahi", "Boneless", null, true, false, "Half 950 · Full 1,750"],
+        ["Mutton Karahi", "Full", 2600, true, true],
+        ["White Chicken Handi", "Half", 1100, true, false],
+      ]],
+      ["Breads", [
+        ["Roghni Naan", "", 60, true, false],
+        ["Garlic Naan", "", 90, true, false],
+        ["Tandoori Roti", "", 25, true, false],
+      ]],
+      ["Drinks", [
+        ["Fresh Lime", "", 150, true, false],
+        ["Doodh Soda", "", 180, true, false],
+        ["Soft Drink", "Regular bottle", 90, true, false],
+      ]],
     ],
   },
   {
-    name: "Karahi & Handi",
-    items: [
-      ["Chicken Karahi", "Half / Full", null, true, false, "Half 950 · Full 1,750"],
-      ["Mutton Karahi", "Full", 2600, true, true],
-      ["White Chicken Handi", "Half", 1100, true, false],
+    slug: "demo-cafe",
+    name: "Khwa Coffee Co.",
+    tagline: "Specialty coffee & bakes · F-7, Islamabad",
+    announcement: "",
+    brand_color: "#3f3d56",
+    whatsapp_number: "923215557788",
+    ordering_enabled: true,
+    menu: [
+      ["Coffee", [
+        ["Flat White", "Double shot, whole milk", 520, true, true],
+        ["Cortado", "", 480, true, false],
+        ["Cold Brew", "16oz, 18-hour steep", 550, true, true],
+        ["Pour Over", "Single origin, ask for today's", 620, true, false],
+      ]],
+      ["Not Coffee", [
+        ["Kashmiri Chai", "Pink, cardamom, pistachio", 380, true, false],
+        ["Hot Chocolate", "70% dark", 460, true, false],
+        ["Fresh Orange Juice", "", 400, false, false],
+      ]],
+      ["Bakes", [
+        ["Butter Croissant", "", 320, true, false],
+        ["Pain au Chocolat", "", 360, true, true],
+        ["Banana Bread", "Toasted, with butter", 340, true, false],
+        ["Cheesecake Slice", "New York style", 550, true, false],
+      ]],
     ],
   },
   {
-    name: "Breads",
-    items: [
-      ["Roghni Naan", "", 60, true, false],
-      ["Garlic Naan", "", 90, true, false],
-      ["Tandoori Roti", "", 25, true, false],
-    ],
-  },
-  {
-    name: "Drinks",
-    items: [
-      ["Fresh Lime", "", 150, true, false],
-      ["Doodh Soda", "", 180, true, false],
-      ["Soft Drink", "Regular bottle", 90, true, false],
+    slug: "demo-burgers",
+    name: "Patty Wagon",
+    tagline: "Smash burgers · DHA Phase 5, Karachi",
+    announcement: "New: Double Truffle — this week only",
+    brand_color: "#b91c1c",
+    whatsapp_number: "923331119999",
+    ordering_enabled: true,
+    menu: [
+      ["Burgers", [
+        ["The Classic Smash", "Single patty, American cheese, house sauce", 690, true, true],
+        ["Double Smash", "Two patties, double cheese", 950, true, true],
+        ["Crispy Chicken", "Buttermilk-fried thigh, slaw", 780, true, false],
+        ["Double Truffle", "Two patties, truffle mayo, Swiss", 1250, true, false],
+        ["The Vegetable One", "Black bean patty", 690, false, false],
+      ]],
+      ["Sides", [
+        ["Fries", "Regular", 260, true, false],
+        ["Loaded Fries", "Cheese sauce, jalapeño, sauce", 480, true, true],
+        ["Onion Rings", "", 320, true, false],
+      ]],
+      ["Shakes", [
+        ["Chocolate Malt", "", 520, true, false],
+        ["Salted Caramel", "", 540, true, false],
+      ]],
     ],
   },
 ];
 
-let catOrder = 0;
-for (const cat of menu) {
-  const { data: c, error: cErr } = await db
-    .from("menu_categories")
-    .insert({ restaurant_id: r.id, name: cat.name, sort_order: catOrder++ })
+for (const d of DEMOS) {
+  await db.from("restaurants").delete().eq("slug", d.slug);
+  const { data: r, error } = await db
+    .from("restaurants")
+    .insert({
+      owner_id: ownerId,
+      slug: d.slug,
+      name: d.name,
+      tagline: d.tagline,
+      announcement: d.announcement,
+      brand_color: d.brand_color,
+      whatsapp_number: d.whatsapp_number,
+      ordering_enabled: d.ordering_enabled,
+      is_published: true,
+    })
     .select()
     .single();
-  if (cErr) throw cErr;
+  if (error) throw error;
 
-  let itemOrder = 0;
-  for (const [name, description, price, avail, featured, priceNote] of cat.items) {
-    const { error: iErr } = await db.from("menu_items").insert({
-      restaurant_id: r.id,
-      category_id: c.id,
-      name,
-      description: description ?? "",
-      price: price ?? null,
-      price_note: priceNote ?? "",
-      is_available: avail,
-      is_featured: featured,
-      sort_order: itemOrder++,
-    });
-    if (iErr) throw iErr;
+  let catOrder = 0;
+  for (const [catName, items] of d.menu) {
+    const { data: c, error: cErr } = await db
+      .from("menu_categories")
+      .insert({ restaurant_id: r.id, name: catName, sort_order: catOrder++ })
+      .select()
+      .single();
+    if (cErr) throw cErr;
+    let itemOrder = 0;
+    for (const [name, description, price, avail, featured, priceNote] of items) {
+      const { error: iErr } = await db.from("menu_items").insert({
+        restaurant_id: r.id,
+        category_id: c.id,
+        name,
+        description: description ?? "",
+        price: price ?? null,
+        price_note: priceNote ?? "",
+        is_available: avail,
+        is_featured: featured,
+        sort_order: itemOrder++,
+      });
+      if (iErr) throw iErr;
+    }
   }
+
+  await db.from("restaurant_tables").delete().eq("restaurant_id", r.id);
+  await db.from("restaurant_tables").insert(
+    ["1", "2", "5"].map((label, i) => ({
+      restaurant_id: r.id,
+      label,
+      sort_order: i,
+    })),
+  );
+
+  console.log(`seeded /m/${d.slug}`);
 }
-
-// 4. A couple of tables
-await db.from("restaurant_tables").delete().eq("restaurant_id", r.id);
-await db.from("restaurant_tables").insert([
-  { restaurant_id: r.id, label: "1", sort_order: 0 },
-  { restaurant_id: r.id, label: "2", sort_order: 1 },
-  { restaurant_id: r.id, label: "5", sort_order: 2 },
-]);
-
-console.log(`Seeded /m/${SLUG}  (restaurant ${r.id})`);

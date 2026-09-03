@@ -34,7 +34,7 @@ gh repo create mezmenu --private --source=. --push
    | `SUPABASE_SERVICE_ROLE_KEY` | same page (`service_role`) - **not** public |
    | `ADMIN_EMAILS` | `mzaheen3307@gmail.com,zaheenzuberi2@gmail.com` |
    | `NEXT_PUBLIC_BRAND` | `MezMenu` |
-   | `NEXT_PUBLIC_PRICE_STANDARD` | `PKR 4,000` |
+   | `NEXT_PUBLIC_PRICE_STANDARD` | `PKR 3,999` |
 
    Do **not** set `SUPABASE_DB_URL` - it is only for the local schema script.
    `NEXT_PUBLIC_SITE_URL` is optional; leave it unset and the app uses the
