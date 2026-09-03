@@ -1,0 +1,14 @@
+# Netlify build config for MezMenu (Next.js 16, App Router).
+# Env vars are set in the Netlify UI, not here - see DEPLOY.md.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Official adapter: serverless routes, RSC, and the proxy.ts middleware
+# (as a Netlify Edge Function). Netlify installs it automatically.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

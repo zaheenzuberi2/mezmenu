@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MezMenu
 
-## Getting Started
+QR menus for restaurants. An owner types their menu once, publishes it to
+`/m/<slug>`, prints a sheet of table QR codes, and edits prices from their
+phone. Diners scan, browse, and send an order straight to the restaurant's
+WhatsApp.
 
-First, run the development server:
+Package: **Standard, PKR 4,000/month.** Text menus only (no item photos),
+WhatsApp-handoff ordering, deal banner, sold-out toggle, per-table QR codes.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack), React 19, Tailwind v4
+- **Supabase** — Postgres + Auth (email/password) + RLS
+- Deploy target: **Netlify** (free tier) behind **Cloudflare** (free)
+- Running cost: **$0/month** until a free-tier cap is hit
+
+### Database note
+
+MezMenu currently shares the **couples-site Supabase project**. Its tables
+(`restaurants`, `menu_categories`, `menu_items`, `restaurant_tables`) are
+namespaced and do not collide. To split it out later: create a dedicated
+project, `pg_dump` those four tables + the `owns_restaurant` /
+`restaurant_is_public` / `touch_updated_at` functions, and swap the keys in
+`.env.local`.
+
+## Local setup
 
 ```bash
+npm install
+cp .env.example .env.local   # then fill in the Supabase values
+node scripts/apply-schema.mjs # creates tables + RLS (idempotent)
+node scripts/seed-demo.mjs    # optional: a published demo at /m/demo-diner
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Auth uses **email + password with email confirmation disabled** (Supabase
+dashboard → Authentication → Providers → Email → "Confirm email" off).
+Password reset is the only flow that sends an email; wire a free SMTP
+(Resend) when that matters.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Var | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | required |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | required |
+| `SUPABASE_SERVICE_ROLE_KEY` | `/admin`, signup pre-confirm, scripts |
+| `SUPABASE_DB_URL` | Postgres connection string, only for `scripts/apply-schema.mjs` |
+| `NEXT_PUBLIC_SITE_URL` | set once there's a custom domain |
+| `ADMIN_EMAILS` | comma-separated, for `/admin` (not built yet) |
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Path | What |
+|---|---|
+| `/` | Marketing landing |
+| `/m/[slug]` | **Public diner menu** — cart in `localStorage`, WhatsApp order, `?t=` table label |
+| `/signup`, `/login`, `/forgot`, `/reset` | Auth |
+| `/dashboard` | Menu editor — categories, items, price, sold-out, popular, reorder, publish |
+| `/dashboard/settings` | Name, tagline, deal banner, accent colour, WhatsApp number, ordering toggle |
+| `/dashboard/qr` | Menu QR + per-table QR, PNG download |
+| `/dashboard/qr/sheet` | Print-ready grid of table cards |
+| `/admin` | Owner-only (ADMIN_EMAILS) — list restaurants, mark paid, set plan |
+| `/privacy`, `/terms` | Legal |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `scripts/apply-schema.mjs` — apply `supabase-setup.sql` (idempotent)
+- `scripts/seed-demo.mjs` — one published demo restaurant
+- `scripts/ensure-admin.mjs` — create owner accounts for ADMIN_EMAILS
+- `scripts/cleanup-test.mjs` — remove manual-test rows
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See `DEPLOY.md` — GitHub → Netlify (config in `netlify.toml`) → Cloudflare.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Not built yet
+
+- Pro tier (multi-branch, custom subdomain, remove branding, analytics)
+- Custom SMTP for password-reset email (Resend)
+- Splitting off a dedicated Supabase project

@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens. Light is the default; dark is opt-in via the OS.
+   Per-restaurant brand colour is injected at runtime as --accent on
+   the menu page wrapper, so it overrides these without a rebuild.
+------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --surface-2: #f4f2ee;
+  --border: #e7e3dc;
+  --text: #1c1a17;
+  --text-muted: #6b6560;
+  --accent: #b4531f;
+  --accent-contrast: #ffffff;
+  --danger: #b42318;
+  --ok: #1a7f4b;
+  --radius: 0.75rem;
+  --shadow: 0 1px 2px rgba(28, 26, 23, 0.06), 0 8px 24px -12px rgba(28, 26, 23, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #14120f;
+    --surface: #1c1a17;
+    --surface-2: #242019;
+    --border: #322d26;
+    --text: #f3efe9;
+    --text-muted: #a49c92;
+    --accent: #e5793c;
+    --accent-contrast: #1c1a17;
+    --danger: #f97066;
+    --ok: #47c48a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --radius-card: var(--radius);
+}
+
+* {
+  border-color: var(--border);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Inputs inherit the type ramp rather than the UA default. */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* A restaurant can set a brand colour; this class carries it. */
+.themed {
+  --accent: var(--brand, #b4531f);
+}
+
+/* Print styles for the QR table sheet. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
 }
