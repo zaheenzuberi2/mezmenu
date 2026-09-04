@@ -24,6 +24,17 @@ const db = createClient(
 
 const DEMO_EMAIL = "demo-owner@mezmenu.local";
 
+/** A simple monogram logo so the demos show what the feature looks like. */
+function monogramSvg(initials, bg) {
+  return Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">` +
+      `<rect width="128" height="128" rx="28" fill="${bg}"/>` +
+      `<text x="64" y="82" font-size="56" font-family="Georgia, 'Times New Roman', serif" ` +
+      `font-weight="600" fill="#ffffff" text-anchor="middle">${initials}</text>` +
+      `</svg>`,
+  );
+}
+
 // one shared demo owner
 let ownerId;
 {
@@ -49,6 +60,7 @@ const DEMOS = [
     tagline: "Charcoal BBQ · Gulberg, Lahore",
     announcement: "Ramadan deal: Iftar platter for two — Rs 1,499",
     brand_color: "#7c2d12",
+    initials: "AR",
     whatsapp_number: "923001234567",
     ordering_enabled: true,
     menu: [
@@ -81,6 +93,7 @@ const DEMOS = [
     tagline: "Specialty coffee & bakes · F-7, Islamabad",
     announcement: "",
     brand_color: "#3f3d56",
+    initials: "K",
     whatsapp_number: "923215557788",
     ordering_enabled: true,
     menu: [
@@ -109,6 +122,7 @@ const DEMOS = [
     tagline: "Smash burgers · DHA Phase 5, Karachi",
     announcement: "New: Double Truffle — this week only",
     brand_color: "#b91c1c",
+    initials: "PW",
     whatsapp_number: "923331119999",
     ordering_enabled: true,
     menu: [
@@ -150,6 +164,21 @@ for (const d of DEMOS) {
     .select()
     .single();
   if (error) throw error;
+
+  // Logo: a simple monogram so the feature is visible on the demos.
+  const logoKey = `${r.id}/logo.svg`;
+  const { error: logoUpErr } = await db.storage
+    .from("restaurant-logos")
+    .upload(logoKey, monogramSvg(d.initials, d.brand_color), {
+      contentType: "image/svg+xml",
+      upsert: true,
+    });
+  if (logoUpErr) throw logoUpErr;
+  const { error: logoSetErr } = await db
+    .from("restaurants")
+    .update({ logo_url: logoKey })
+    .eq("id", r.id);
+  if (logoSetErr) throw logoSetErr;
 
   let catOrder = 0;
   for (const [catName, items] of d.menu) {
