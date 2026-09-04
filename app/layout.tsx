@@ -9,11 +9,13 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-// Classic, warm display serif for headlines.
+// Classic, warm display serif for headlines. Only the weight actually used
+// (font-medium everywhere headings appear) - trimming 400/600 cuts the font
+// payload roughly in half.
 const fraunces = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["500"],
   style: ["normal", "italic"],
 });
 

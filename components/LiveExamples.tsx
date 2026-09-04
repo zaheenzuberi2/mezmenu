@@ -1,8 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { Qr } from "@/components/Qr";
-import { siteUrlClient } from "@/lib/site-url";
+import QRCode from "qrcode";
+import { siteUrl } from "@/lib/env";
 
 const EXAMPLES = [
   {
@@ -25,8 +23,24 @@ const EXAMPLES = [
   },
 ];
 
-export function LiveExamples() {
-  const origin = siteUrlClient();
+/**
+ * Server-rendered: the QR codes are generated at request time on the server
+ * (qrcode's SVG output, inlined as markup) rather than drawn client-side in
+ * a "use client" component. Ships as plain HTML - no client JS, no blank
+ * skeleton while a canvas draws after hydration.
+ */
+export async function LiveExamples() {
+  const origin = siteUrl();
+  const cards = await Promise.all(
+    EXAMPLES.map(async (e) => ({
+      ...e,
+      qrSvg: await QRCode.toString(`${origin}/m/${e.slug}`, {
+        type: "svg",
+        margin: 1,
+        color: { dark: "#111111", light: "#ffffff" },
+      }),
+    })),
+  );
 
   return (
     <section className="border-t border-border bg-bg">
@@ -46,7 +60,7 @@ export function LiveExamples() {
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {EXAMPLES.map((e) => (
+          {cards.map((e) => (
             <Link
               key={e.slug}
               href={`/m/${e.slug}`}
@@ -65,9 +79,10 @@ export function LiveExamples() {
               </div>
 
               <div className="flex items-center gap-4 p-5">
-                <div className="shrink-0 rounded-xl border border-border bg-white p-1.5 shadow-sm">
-                  <Qr value={`${origin}/m/${e.slug}`} size={64} />
-                </div>
+                <div
+                  className="h-16 w-16 shrink-0 rounded-xl border border-border bg-white p-1.5 shadow-sm [&_svg]:h-full [&_svg]:w-full"
+                  dangerouslySetInnerHTML={{ __html: e.qrSvg }}
+                />
                 <div className="min-w-0">
                   <p className="text-sm font-medium">Scan to view the menu</p>
                   <p className="mt-0.5 text-sm text-accent opacity-0 transition-opacity group-hover:opacity-100">

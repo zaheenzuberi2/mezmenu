@@ -39,11 +39,19 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
+  // Only routes that actually read the session need this. The old regex
+  // matched everything except static assets - so the landing page, every
+  // diner menu, /contact etc. were all paying a real network round-trip to
+  // Supabase on every single request (visible as ~500ms of extra TTFB even
+  // on a cached static page, since middleware runs before the cache is
+  // served). None of those pages use a session, so they're excluded here.
   matcher: [
-    /*
-     * Everything except static assets - the public menu pages are hit by
-     * diners who never have a session, so keep this lean.
-     */
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|woff2?)$).*)",
+    "/dashboard/:path*",
+    "/admin/:path*",
+    "/login",
+    "/signup",
+    "/forgot",
+    "/reset",
+    "/auth/:path*",
   ],
 };
