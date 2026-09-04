@@ -60,7 +60,7 @@ export async function updateSettings(
     name: String(formData.get("name") ?? "").trim() || restaurant.name,
     tagline: String(formData.get("tagline") ?? "").trim(),
     announcement: String(formData.get("announcement") ?? "").trim(),
-    brand_color: String(formData.get("brand_color") ?? "").trim() || "#0f172a",
+    brand_color: String(formData.get("brand_color") ?? "").trim() || "#b4531f",
     whatsapp_number: normalizeWhatsApp(
       String(formData.get("whatsapp_number") ?? ""),
     ),

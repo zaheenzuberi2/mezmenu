@@ -82,7 +82,7 @@ export function QrManager({
                 setLabel("");
               }
             }}
-            className="rounded-full bg-accent px-4 text-sm font-medium text-accent-contrast hover:opacity-90"
+            className="shrink-0 whitespace-nowrap rounded-full bg-accent px-4 text-sm font-medium text-accent-contrast hover:opacity-90"
           >
             Add table
           </button>

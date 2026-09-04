@@ -56,7 +56,7 @@ export function SettingsForm({ restaurant }: { restaurant: Restaurant }) {
           <input
             name="brand_color"
             type="color"
-            defaultValue={restaurant.brand_color || "#0f172a"}
+            defaultValue={restaurant.brand_color || "#b4531f"}
             className="mt-1 h-10 w-20 rounded border border-border bg-surface"
           />
         </label>

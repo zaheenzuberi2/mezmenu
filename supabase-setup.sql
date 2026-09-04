@@ -18,7 +18,9 @@ create table if not exists public.restaurants (
   -- One-line deal / notice banner. Empty string = hidden.
   announcement      text not null default '',
 
-  brand_color       text not null default '#0f172a',
+  -- Matches the app's own accent (terracotta) so a new menu looks on-brand
+  -- until the owner picks their own colour in Settings.
+  brand_color       text not null default '#b4531f',
   logo_url          text,
 
   -- Digits only, international format without '+', e.g. 923001234567.
@@ -38,6 +40,13 @@ create table if not exists public.restaurants (
 );
 
 create index if not exists restaurants_owner_idx on public.restaurants(owner_id);
+
+-- Migration: brand_color used to default to a dark navy ('#0f172a') instead
+-- of the app's terracotta accent. Fix the default for new rows, and
+-- backfill any restaurant that never touched the colour picker (still
+-- sitting on the old default) so their menu isn't off-brand.
+alter table public.restaurants alter column brand_color set default '#b4531f';
+update public.restaurants set brand_color = '#b4531f' where brand_color = '#0f172a';
 
 create table if not exists public.menu_categories (
   id             uuid primary key default gen_random_uuid(),

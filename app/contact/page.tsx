@@ -20,6 +20,11 @@ export default function ContactPage() {
           </a>{" "}
           — for sign-up help, billing, menu changes, or anything else.
         </p>
+        <p className="text-xs text-text-muted">
+          Don&apos;t see our reply, or a password reset email, in your inbox?
+          Please check your spam or junk folder as well — it sometimes lands
+          there.
+        </p>
       </section>
 
       {CONTACT_PHONE && (

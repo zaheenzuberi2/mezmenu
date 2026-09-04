@@ -398,7 +398,7 @@ function AddCategory({ run }: { run: (fn: () => Promise<unknown>) => void }) {
       />
       <button
         onClick={submit}
-        className="rounded-full border border-border px-4 py-2 text-sm font-medium hover:border-accent hover:text-accent"
+        className="shrink-0 whitespace-nowrap rounded-full border border-border px-4 py-2 text-sm font-medium hover:border-accent hover:text-accent"
       >
         Add category
       </button>
