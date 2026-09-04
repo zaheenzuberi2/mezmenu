@@ -53,12 +53,19 @@ function WhatsAppMock() {
           <p className="text-[11px] text-text-muted">WhatsApp Business</p>
         </div>
       </div>
-      <div className="mt-3 rounded-2xl rounded-tl-sm bg-[#DCF8C6] px-3.5 py-3 text-xs leading-relaxed text-[#1b1b1b]">
-        <p className="font-semibold">New order — Al-Rehman Tikka House</p>
-        <p className="mt-1">Table: 5</p>
-        <p className="mt-1">- 1x Chicken Tikka - Rs 320</p>
-        <p>- 1x Malai Boti - Rs 850</p>
-        <p className="mt-1 font-semibold">Estimated total: Rs 1,170</p>
+      <div className="relative mt-3 ml-1.5">
+        <span
+          aria-hidden
+          className="absolute -left-1.5 top-0 h-3 w-3 rounded-tl-[3px] bg-[#d9fdd3]"
+          style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
+        />
+        <div className="relative rounded-xl rounded-tl-none bg-[#d9fdd3] px-3.5 py-3 text-xs leading-relaxed text-[#111b21] shadow-sm">
+          <p className="font-bold">New order — Al-Rehman Tikka House</p>
+          <p className="mt-1 font-bold">Table: 5</p>
+          <p className="mt-1.5">- 1x Chicken Tikka - Rs 320</p>
+          <p>- 1x Malai Boti - Rs 850</p>
+          <p className="mt-1.5 font-semibold">Estimated total: Rs 1,170</p>
+        </div>
       </div>
       <p className="mt-3 flex items-center gap-1.5 text-xs text-accent">
         <TableNumberIcon className="h-3.5 w-3.5" /> Table number attached

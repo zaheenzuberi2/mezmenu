@@ -121,16 +121,19 @@ export function MenuView({
 
   return (
     <div
-      className="themed min-h-full pb-28"
+      className="themed min-h-full pb-28 sm:bg-surface-2"
       style={
         {
           "--brand": restaurant.brand_color || "#b4531f",
         } as React.CSSProperties
       }
     >
+      {/* On desktop this reads as a phone-width column, not a stretched
+          mobile page - the fixed cart bar / sheet below match the same
+          max-w so the whole thing lines up as one "device" panel. */}
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-border bg-bg/90 backdrop-blur">
-        <div className="mx-auto max-w-2xl px-4 py-3">
+      <header className="sticky top-0 z-20 mx-auto border-b border-border bg-bg/90 backdrop-blur sm:max-w-md sm:border-x">
+        <div className="mx-auto max-w-md px-4 py-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex min-w-0 items-center gap-2.5">
               {logoUrl(restaurant.logo_url) && (
@@ -173,14 +176,15 @@ export function MenuView({
       </header>
 
       {restaurant.announcement && (
-        <div className="mx-auto max-w-2xl px-4 pt-4">
+        <div className="mx-auto max-w-md bg-bg px-4 pt-4 sm:border-x sm:border-t-0 sm:border-border">
           <div className="rounded-card border border-accent/30 bg-accent/10 px-3 py-2 text-sm font-medium text-accent">
             {restaurant.announcement}
           </div>
         </div>
       )}
 
-      <main className="mx-auto max-w-2xl px-4">
+      <main className="mx-auto max-w-md bg-bg px-4 sm:border-x sm:border-border sm:pb-4">
+
         {nonEmptyCategories.length === 0 && (
           <p className="py-16 text-center text-sm text-text-muted">
             This menu is being set up. Check back soon.
@@ -297,7 +301,7 @@ export function MenuView({
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-bg/95 p-3 backdrop-blur">
           <button
             onClick={() => setSheetOpen(true)}
-            className="mx-auto flex w-full max-w-2xl items-center justify-between rounded-full bg-accent px-5 py-3 font-medium text-accent-contrast"
+            className="mx-auto flex w-full max-w-md items-center justify-between rounded-full bg-accent px-5 py-3 font-medium text-accent-contrast"
           >
             <span>
               View order · {count} {count === 1 ? "item" : "items"}
@@ -320,7 +324,7 @@ export function MenuView({
             className="absolute inset-0 bg-black/40"
           />
           <div className="relative max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-border bg-bg p-4">
-            <div className="mx-auto max-w-2xl">
+            <div className="mx-auto max-w-md">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Your order</h2>
                 <button

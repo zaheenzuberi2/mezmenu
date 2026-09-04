@@ -57,27 +57,34 @@ export function HeroMenuCard() {
           <li
             key={it.name}
             className={`flex items-start justify-between gap-3 py-3 ${
-              it.soldOut ? "opacity-40" : ""
+              it.soldOut ? "opacity-50" : ""
             }`}
           >
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="text-sm font-medium">{it.name}</span>
+                <span
+                  className={`text-sm font-medium ${it.soldOut ? "text-text-muted" : ""}`}
+                >
+                  {it.name}
+                </span>
                 {it.tag && (
                   <span className="rounded bg-accent/15 px-1 py-0.5 text-[9px] font-semibold uppercase text-accent">
                     {it.tag}
                   </span>
                 )}
-                {it.soldOut && (
-                  <span className="rounded bg-surface-2 px-1 py-0.5 text-[9px] font-semibold uppercase text-text-muted">
-                    Sold out
-                  </span>
-                )}
               </div>
               {it.note && <p className="text-xs text-text-muted">{it.note}</p>}
-              <p className="mt-0.5 text-xs font-medium">{it.price}</p>
+              <p
+                className={`mt-0.5 text-xs font-medium ${it.soldOut ? "text-text-muted" : ""}`}
+              >
+                {it.price}
+              </p>
             </div>
-            {!it.soldOut && (
+            {it.soldOut ? (
+              <span className="mt-0.5 shrink-0 cursor-not-allowed rounded-full bg-surface-2 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-text-muted">
+                Sold Out
+              </span>
+            ) : (
               <span className="mt-0.5 shrink-0 rounded-full border border-accent px-3 py-1 text-xs font-medium text-accent">
                 Add
               </span>
@@ -86,9 +93,9 @@ export function HeroMenuCard() {
         ))}
       </ul>
 
-      {/* order bar */}
-      <div className="border-t border-border p-3">
-        <div className="flex items-center justify-between rounded-full bg-accent px-4 py-2.5 text-sm font-medium text-accent-contrast">
+      {/* order bar - styled as a real floating action button */}
+      <div className="border-t border-border bg-bg/95 p-3 backdrop-blur">
+        <div className="flex items-center justify-between rounded-full bg-accent px-4 py-3 text-sm font-semibold text-accent-contrast shadow-lg shadow-accent/30">
           <span>View order · 2 items</span>
           <span>Rs 1,170</span>
         </div>

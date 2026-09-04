@@ -64,7 +64,9 @@ export async function LiveExamples() {
             <Link
               key={e.slug}
               href={`/m/${e.slug}`}
-              className="group block overflow-hidden rounded-card border border-border bg-surface shadow-[var(--shadow)] transition-transform hover:-translate-y-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block overflow-hidden rounded-card border border-border bg-surface shadow-[var(--shadow)] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
             >
               <div
                 className="relative flex h-40 flex-col justify-between p-5"
