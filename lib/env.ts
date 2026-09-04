@@ -74,6 +74,19 @@ export function isAdminEmail(email: string | null | undefined): boolean {
 /** Product name, so a rebrand is a one-line change. */
 export const BRAND = process.env.NEXT_PUBLIC_BRAND ?? "MezMenu";
 
+/**
+ * MezMenu's own contact number (digits, international, no "+"), shown on the
+ * Contact page and as a subtle link on every diner menu. Empty = hidden.
+ */
+export const CONTACT_PHONE = (
+  process.env.NEXT_PUBLIC_CONTACT_PHONE ?? ""
+).replace(/[^0-9]/g, "");
+
+/** Pretty version for display, e.g. "+92 300 1234567". */
+export const CONTACT_PHONE_DISPLAY =
+  process.env.NEXT_PUBLIC_CONTACT_PHONE_DISPLAY ??
+  (CONTACT_PHONE ? `+${CONTACT_PHONE}` : "");
+
 /** Standard package price, display only. */
 export const PRICE_STANDARD =
   process.env.NEXT_PUBLIC_PRICE_STANDARD ?? "PKR 3,999";

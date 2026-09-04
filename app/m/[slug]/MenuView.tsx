@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { LogoMark } from "@/components/Logo";
 import { formatPrice } from "@/lib/money";
+import { logoUrl } from "@/lib/logo-url";
+import { CONTACT_PHONE } from "@/lib/env";
 import { buildOrderText, waLink } from "@/lib/wa";
 import type { CartLine, MenuBundle, MenuItem } from "@/lib/types";
 
@@ -129,18 +131,28 @@ export function MenuView({
       {/* Header */}
       <header className="sticky top-0 z-20 border-b border-border bg-bg/90 backdrop-blur">
         <div className="mx-auto max-w-2xl px-4 py-3">
-          <div className="flex items-baseline justify-between gap-3">
-            <h1 className="truncate text-lg font-semibold tracking-tight">
-              {restaurant.name}
-            </h1>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-2.5">
+              {logoUrl(restaurant.logo_url) && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={logoUrl(restaurant.logo_url) as string}
+                  alt=""
+                  className="h-9 w-9 shrink-0 rounded-lg object-contain"
+                />
+              )}
+              <h1 className="truncate text-lg font-semibold tracking-tight">
+                {restaurant.name}
+              </h1>
+            </div>
             {tableLabel && (
-              <span className="shrink-0 rounded-full bg-surface-2 px-2.5 py-1 text-xs font-medium text-text-muted">
+              <span className="mt-1 shrink-0 rounded-full bg-surface-2 px-2.5 py-1 text-xs font-medium text-text-muted">
                 Table {tableLabel}
               </span>
             )}
           </div>
           {restaurant.tagline && (
-            <p className="mt-0.5 truncate text-sm text-text-muted">
+            <p className="mt-1 truncate text-sm text-text-muted">
               {restaurant.tagline}
             </p>
           )}
@@ -256,9 +268,28 @@ export function MenuView({
           </section>
         ))}
 
-        <p className="flex items-center justify-center gap-1.5 py-8 text-xs text-text-muted">
-          <LogoMark className="h-4 w-4" /> Menu by MezMenu
-        </p>
+        <div className="flex flex-col items-center gap-1 py-8 text-xs text-text-muted">
+          <a
+            href="https://mezmenu.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 hover:text-text"
+          >
+            <LogoMark className="h-4 w-4" /> Menu by MezMenu
+          </a>
+          {CONTACT_PHONE && (
+            <a
+              href={`https://wa.me/${CONTACT_PHONE}?text=${encodeURIComponent(
+                "Hi, I'd like a QR menu for my restaurant.",
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-text"
+            >
+              Get one for your restaurant →
+            </a>
+          )}
+        </div>
       </main>
 
       {/* Floating cart bar */}

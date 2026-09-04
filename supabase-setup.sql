@@ -186,3 +186,42 @@ drop policy if exists "owner manages tables" on public.restaurant_tables;
 create policy "owner manages tables" on public.restaurant_tables
   for all using (public.owns_restaurant(restaurant_id))
   with check (public.owns_restaurant(restaurant_id));
+
+-- ------------------------------------------------------------
+-- 3. Storage: restaurant logos (optional, one small image per restaurant)
+-- ------------------------------------------------------------
+
+insert into storage.buckets (id, name, public)
+values ('restaurant-logos', 'restaurant-logos', true)
+on conflict (id) do update set public = true;
+
+-- Files live at <restaurant_id>/<filename>, so the first path segment
+-- decides who may write. Reads are public because the bucket is public.
+drop policy if exists "public reads restaurant logos"  on storage.objects;
+drop policy if exists "owner uploads restaurant logos" on storage.objects;
+drop policy if exists "owner updates restaurant logos" on storage.objects;
+drop policy if exists "owner deletes restaurant logos" on storage.objects;
+
+create policy "public reads restaurant logos" on storage.objects
+  for select using (bucket_id = 'restaurant-logos');
+
+create policy "owner uploads restaurant logos" on storage.objects
+  for insert to authenticated
+  with check (
+    bucket_id = 'restaurant-logos'
+    and public.owns_restaurant(((storage.foldername(name))[1])::uuid)
+  );
+
+create policy "owner updates restaurant logos" on storage.objects
+  for update to authenticated
+  using (
+    bucket_id = 'restaurant-logos'
+    and public.owns_restaurant(((storage.foldername(name))[1])::uuid)
+  );
+
+create policy "owner deletes restaurant logos" on storage.objects
+  for delete to authenticated
+  using (
+    bucket_id = 'restaurant-logos'
+    and public.owns_restaurant(((storage.foldername(name))[1])::uuid)
+  );

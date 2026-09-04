@@ -22,6 +22,7 @@ export default async function SheetPage() {
       <PrintSheet
         name={restaurant.name}
         slug={restaurant.slug}
+        logoPath={restaurant.logo_url}
         origin={siteUrl()}
         tables={tables.map((t) => t.label)}
       />

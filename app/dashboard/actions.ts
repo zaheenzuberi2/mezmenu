@@ -85,6 +85,18 @@ export async function setPublished(next: boolean) {
   refresh();
 }
 
+/** Persist (or clear) the restaurant logo path after a Storage upload. */
+export async function setLogo(path: string | null) {
+  const { restaurant, db } = await ownRestaurant();
+  // Only accept a path inside this restaurant's own folder.
+  if (path && !path.startsWith(`${restaurant.id}/`)) return;
+  await db
+    .from("restaurants")
+    .update({ logo_url: path })
+    .eq("id", restaurant.id);
+  refresh();
+}
+
 /* ----------------------------------------------------------------- categories */
 
 export async function addCategory(name: string) {

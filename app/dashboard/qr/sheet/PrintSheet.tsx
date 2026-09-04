@@ -1,6 +1,7 @@
 "use client";
 
 import { Qr } from "@/components/Qr";
+import { logoUrl } from "@/lib/logo-url";
 
 function menuUrl(origin: string, slug: string, table?: string) {
   const u = new URL(`${origin}/m/${slug}`);
@@ -11,14 +12,17 @@ function menuUrl(origin: string, slug: string, table?: string) {
 export function PrintSheet({
   name,
   slug,
+  logoPath,
   origin,
   tables,
 }: {
   name: string;
   slug: string;
+  logoPath: string | null;
   origin: string;
   tables: string[];
 }) {
+  const logo = logoUrl(logoPath);
   const cards = tables.length > 0 ? tables : [null];
 
   return (
@@ -43,6 +47,14 @@ export function PrintSheet({
             key={label ?? i}
             className="flex break-inside-avoid flex-col items-center rounded-xl border border-border p-6 text-center print:m-2 print:rounded-none print:border-black"
           >
+            {logo && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={logo}
+                alt=""
+                className="mb-2 h-12 w-12 object-contain"
+              />
+            )}
             <p className="text-lg font-semibold text-black">{name}</p>
             <p className="mt-1 text-sm text-neutral-600">
               Scan to see the menu &amp; order

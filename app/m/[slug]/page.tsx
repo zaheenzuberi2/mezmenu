@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublicMenu } from "@/lib/data";
 import { isSupabaseConfigured, BRAND } from "@/lib/env";
+import { logoUrl } from "@/lib/logo-url";
 import { SetupNotice } from "@/components/SetupNotice";
 import { MenuView } from "./MenuView";
 
@@ -13,6 +14,7 @@ export async function generateMetadata({
   if (!bundle) return { title: "Menu not found" };
 
   const { restaurant } = bundle;
+  const image = logoUrl(restaurant.logo_url);
   return {
     title: `${restaurant.name} - Menu`,
     description:
@@ -22,6 +24,13 @@ export async function generateMetadata({
       title: `${restaurant.name} - Menu`,
       description: restaurant.tagline || `${restaurant.name} on ${BRAND}`,
       type: "website",
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      card: image ? "summary" : undefined,
+      title: `${restaurant.name} - Menu`,
+      description: restaurant.tagline || `${restaurant.name} on ${BRAND}`,
+      images: image ? [image] : undefined,
     },
   };
 }

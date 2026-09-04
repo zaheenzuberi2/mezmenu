@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/LegalLayout";
-import { BRAND } from "@/lib/env";
+import { BRAND, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from "@/lib/env";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -22,20 +22,22 @@ export default function ContactPage() {
         </p>
       </section>
 
-      <section className="space-y-2">
-        <h2 className="text-base font-semibold text-text">WhatsApp</h2>
-        <p>
-          <a
-            className="text-accent"
-            href="https://wa.me/923001234567"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            +92 300 1234567
-          </a>{" "}
-          — send your paper menu and we&apos;ll get you set up.
-        </p>
-      </section>
+      {CONTACT_PHONE && (
+        <section className="space-y-2">
+          <h2 className="text-base font-semibold text-text">WhatsApp</h2>
+          <p>
+            <a
+              className="text-accent"
+              href={`https://wa.me/${CONTACT_PHONE}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {CONTACT_PHONE_DISPLAY}
+            </a>{" "}
+            — send your paper menu and we&apos;ll get you set up.
+          </p>
+        </section>
+      )}
 
       <section className="space-y-2">
         <h2 className="text-base font-semibold text-text">

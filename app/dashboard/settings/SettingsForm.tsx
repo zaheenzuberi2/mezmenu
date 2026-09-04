@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import type { Restaurant } from "@/lib/types";
 import { updateSettings, type SettingsState } from "../actions";
+import { LogoUpload } from "./LogoUpload";
 
 const initial: SettingsState = {};
 const input =
@@ -15,6 +16,11 @@ export function SettingsForm({ restaurant }: { restaurant: Restaurant }) {
     <form action={action} className="max-w-xl space-y-6">
       <div className="space-y-4 rounded-card border border-border bg-surface p-5">
         <h2 className="font-semibold">Restaurant</h2>
+
+        <LogoUpload
+          restaurantId={restaurant.id}
+          currentPath={restaurant.logo_url}
+        />
 
         <label className="block">
           <span className="text-sm font-medium">Name</span>
