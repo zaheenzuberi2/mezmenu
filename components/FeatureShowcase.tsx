@@ -79,17 +79,17 @@ const ROW_1_POINTS = [
   {
     icon: PrinterSlashIcon,
     title: "Stop paying for reprints",
-    body: "Fuel, sugar, chicken — prices move every week. Change yours in the dashboard and it's live everywhere, no printer visit.",
+    body: "Prices move weekly. Update the dashboard — it's live everywhere, instantly.",
   },
   {
     icon: SoldOutIcon,
     title: "Mark a dish sold out in one tap",
-    body: "Ran out of karahi mid-service? Toggle it off from your phone. Diners never order something you can't serve.",
+    body: "Ran out mid-service? Toggle it off. Diners never order what you can't serve.",
   },
   {
     icon: PriceTagIcon,
     title: "Deals and price notes, whenever you want",
-    body: "Ramadan platter today, Eid special tomorrow. One line, no design software, no waiting on a printer.",
+    body: "Ramadan platter today, Eid special tomorrow. One line, no printer needed.",
   },
 ];
 
@@ -97,17 +97,17 @@ const ROW_2_POINTS = [
   {
     icon: NoCommissionIcon,
     title: "Zero commission, ever",
-    body: "The order goes straight to your WhatsApp. No middleman taking a cut of every bill.",
+    body: "Orders go straight to your WhatsApp — no middleman, no cut.",
   },
   {
     icon: TableNumberIcon,
     title: "Table number, every time",
-    body: "The QR on each table is unique — the order that lands on your phone already says which table it's for.",
+    body: "Every table's QR is unique, so every order tells you exactly where it's from.",
   },
   {
     icon: WhatsAppOrderIcon,
     title: "The app you already use",
-    body: "No new dashboard for the kitchen to learn. Orders arrive on the same WhatsApp your staff checks all day.",
+    body: "No new dashboard to learn. Orders arrive on the WhatsApp your staff already watches.",
   },
 ];
 
@@ -137,7 +137,12 @@ function PointList({
 
 export function FeatureShowcase() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
+    <section className="relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-1/3 left-[-10%] h-[420px] w-[420px] rounded-full bg-accent/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-6 py-20">
       {/* Row 1: text left, visual right */}
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
@@ -168,6 +173,7 @@ export function FeatureShowcase() {
           </h2>
           <PointList points={ROW_2_POINTS} />
         </div>
+      </div>
       </div>
     </section>
   );

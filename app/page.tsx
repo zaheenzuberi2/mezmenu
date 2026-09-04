@@ -7,7 +7,6 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { LiveExamples } from "@/components/LiveExamples";
 import { FeatureShowcase } from "@/components/FeatureShowcase";
 import { PricingCard } from "@/components/PricingCard";
-import { BRAND } from "@/lib/env";
 
 export default function Home() {
   return (
@@ -39,12 +38,16 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-accent/10 blur-3xl"
+          className="pointer-events-none absolute -top-40 right-[-15%] h-[420px] w-[420px] rounded-full bg-accent/25 blur-3xl sm:h-[520px] sm:w-[520px] sm:bg-accent/15"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-20 left-[-15%] h-[300px] w-[300px] rounded-full bg-gold/20 blur-3xl sm:h-[380px] sm:w-[380px]"
         />
         <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 pt-14 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
           <div>
             <p className="text-sm font-medium tracking-wide text-accent">
-              QR menus for restaurants, cafés &amp; dhabas in Pakistan
+              QR menus, built for Pakistani restaurants
             </p>
             <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-[-0.01em] text-text sm:text-6xl">
               Change a price,
@@ -52,10 +55,8 @@ export default function Home() {
               <span className="italic text-accent">not</span> the whole menu.
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-text-muted">
-              {BRAND} puts your menu on a QR code you control. Prices move,
-              deals come and go, dishes sell out — you update it from your
-              phone and diners see it instantly. No printer, no delay, no
-              commission.
+              Your menu, on a QR code you control. Update prices and specials
+              from your phone — live instantly, no printer, no commission.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
@@ -90,20 +91,24 @@ export default function Home() {
       <PricingCard />
 
       {/* Closing CTA - deep charcoal band */}
-      <section className="bg-ink">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 text-on-ink sm:flex-row sm:items-center sm:justify-between">
+      <section className="relative overflow-hidden bg-ink">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-0 h-[360px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/25 blur-3xl"
+        />
+        <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 text-on-ink sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="font-display text-3xl font-medium">
               Your menu could be live by tonight
             </h2>
             <p className="mt-2 max-w-md text-sm text-on-ink-muted">
-              Send us your paper menu on WhatsApp and we&apos;ll help you load
-              it — free, no obligation.
+              Send your paper menu on WhatsApp — we&apos;ll set it up for you,
+              free.
             </p>
           </div>
           <Link
             href="/signup"
-            className="shrink-0 rounded-full bg-accent px-6 py-3 font-medium text-accent-contrast hover:opacity-90"
+            className="shrink-0 rounded-full bg-accent px-6 py-3 font-medium text-accent-contrast shadow-lg shadow-accent/30 hover:opacity-90"
           >
             Build my menu free
           </Link>

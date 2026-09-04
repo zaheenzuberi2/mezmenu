@@ -4,24 +4,28 @@ const STEPS = [
   {
     icon: PhoneEditIcon,
     title: "Build your menu from your phone",
-    body: "Type in your categories, dishes and prices. Takes minutes, no design skill needed.",
+    body: "Type in your dishes and prices. No design skill needed.",
   },
   {
     icon: QrPrintIcon,
     title: "Print your table QR codes — once",
-    body: "One sheet, every table covered. You never reprint for a price change again.",
+    body: "One sheet, every table. Never reprint for a price change again.",
   },
   {
     icon: WhatsAppOrderIcon,
     title: "Diners scan, order, straight to WhatsApp",
-    body: "The order lands on the number you already watch, table number included.",
+    body: "Orders land on the number you already watch — table number included.",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+    <section className="relative overflow-hidden border-t border-border bg-surface">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 right-[-10%] h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-6 py-20">
         <div className="max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">
             How it works

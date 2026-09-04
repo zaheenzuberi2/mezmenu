@@ -13,8 +13,12 @@ const FEATURES = [
 
 export function PricingCard() {
   return (
-    <section id="pricing" className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+    <section id="pricing" className="relative overflow-hidden border-t border-border bg-surface">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-1/2 h-[420px] w-[600px] -translate-x-1/2 rounded-full bg-gold/15 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-6 py-20">
         <div className="mx-auto max-w-lg text-center">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">
             Pricing
@@ -31,7 +35,7 @@ export function PricingCard() {
 
           <div className="overflow-hidden rounded-[1.5rem] border border-border bg-bg shadow-[var(--shadow)]">
             <div className="bg-ink px-8 pt-9 pb-7 text-on-ink">
-              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium">
+              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-wide text-gold-soft">
                 Standard
               </span>
               <div className="mt-4 flex items-end gap-2">

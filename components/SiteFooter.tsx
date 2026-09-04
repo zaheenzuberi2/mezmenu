@@ -6,7 +6,7 @@ import { BRAND } from "@/lib/env";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 pt-10 pb-24 sm:pb-10">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <Logo />
