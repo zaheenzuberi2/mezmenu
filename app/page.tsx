@@ -50,26 +50,26 @@ export default function Home() {
               QR menus, built for Pakistani restaurants
             </p>
             <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-[-0.01em] text-text sm:text-6xl">
-              Change a price,
-              <br />
-              <span className="italic text-accent">not</span> the whole menu.
+              The <span className="italic text-accent">smartest</span> restaurants
+              don&apos;t use paper menus anymore.
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-text-muted">
-              Your menu, on a QR code you control. Update prices and specials
-              from your phone — live instantly, no printer, no commission.
+              Join the cafés, dhabas, and burger joints running a faster
+              floor. Update your daily specials, mark sold-out items
+              instantly, and watch orders land directly on your phone.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                href="/signup"
+                href="/m/demo-diner"
                 className="rounded-full bg-accent px-6 py-3 font-medium text-accent-contrast shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5 hover:opacity-95"
               >
-                Build my menu free
+                See Live Demo
               </Link>
               <Link
-                href="/m/demo-diner"
+                href="/signup"
                 className="rounded-full border border-border px-6 py-3 font-medium transition-colors hover:border-accent hover:text-accent"
               >
-                See live demo →
+                Build my menu free →
               </Link>
             </div>
             <p className="mt-5 text-sm text-text-muted">
