@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Logo } from "@/components/Logo";
+import { AuthFooter } from "@/components/SiteFooter";
 
 export function AuthShell({
   title,
@@ -27,6 +28,7 @@ export function AuthShell({
         {footer && (
           <div className="mt-6 text-sm text-text-muted">{footer}</div>
         )}
+        <AuthFooter />
       </div>
     </main>
   );
