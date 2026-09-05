@@ -44,21 +44,21 @@ export default function Home() {
           aria-hidden
           className="pointer-events-none absolute top-20 left-[-15%] h-[300px] w-[300px] rounded-full bg-gold/20 blur-3xl sm:h-[380px] sm:w-[380px]"
         />
-        <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 pt-14 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-9 px-6 pt-8 pb-14 sm:gap-14 sm:pt-14 sm:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
           <div>
             <p className="text-sm font-medium tracking-wide text-accent">
               QR menus, built for Pakistani restaurants
             </p>
-            <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-[-0.01em] text-text sm:text-6xl">
+            <h1 className="mt-3 font-display text-[2.15rem] font-medium leading-[1.08] tracking-[-0.01em] text-text sm:mt-4 sm:text-6xl sm:leading-[1.05]">
               The <span className="italic text-accent">smartest</span> restaurants
               don&apos;t use paper menus anymore.
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-text-muted">
+            <p className="mt-4 max-w-md text-base leading-relaxed text-text-muted sm:mt-6 sm:text-lg">
               Join the cafés, dhabas, and burger joints running a faster
               floor. Update your daily specials, mark sold-out items
               instantly, and watch orders land directly on your phone.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4 sm:mt-8">
               <Link
                 href="/m/demo-diner"
                 className="rounded-full bg-accent px-6 py-3 font-medium text-accent-contrast shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5 hover:opacity-95"
