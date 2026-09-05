@@ -34,12 +34,12 @@ export function PricingCard() {
           </span>
 
           <div className="overflow-hidden rounded-[1.5rem] border border-border bg-bg shadow-[var(--shadow)]">
-            <div className="bg-ink px-8 pt-9 pb-7 text-on-ink">
-              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-wide text-gold-soft">
+            <div className="glow-ink overflow-hidden bg-ink px-8 pt-9 pb-7 text-on-ink">
+              <span className="rounded-full bg-gold/15 px-3 py-1 text-xs font-medium tracking-wide text-gold-soft ring-1 ring-inset ring-gold/25">
                 Standard
               </span>
               <div className="mt-4 flex items-end gap-2">
-                <span className="font-display text-5xl font-medium">
+                <span className="font-display text-5xl font-medium text-gold-soft">
                   {PRICE_STANDARD}
                 </span>
                 <span className="pb-1.5 text-on-ink-muted">/ month</span>

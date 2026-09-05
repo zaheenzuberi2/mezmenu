@@ -38,11 +38,15 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 right-[-15%] h-[420px] w-[420px] rounded-full bg-accent/25 blur-3xl sm:h-[520px] sm:w-[520px] sm:bg-accent/15"
+          className="pointer-events-none absolute -top-[30%] -right-[22%] h-[70vh] w-[70vh] rounded-full bg-accent/25 blur-3xl sm:-top-[45%] sm:right-[-8%] sm:h-[46rem] sm:w-[46rem] sm:bg-accent/[0.17]"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute top-20 left-[-15%] h-[300px] w-[300px] rounded-full bg-gold/20 blur-3xl sm:h-[380px] sm:w-[380px]"
+          className="pointer-events-none absolute -top-[8%] -left-[25%] h-[60vh] w-[60vh] rounded-full bg-gold/30 blur-3xl sm:-top-[10%] sm:left-[-10%] sm:h-[40rem] sm:w-[40rem] sm:bg-gold/20"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-[-35%] left-[15%] h-[45vh] w-[80vw] rounded-full bg-accent/10 blur-3xl sm:w-[46rem]"
         />
         <div className="mx-auto grid max-w-6xl items-center gap-9 px-6 pt-8 pb-14 sm:gap-14 sm:pt-14 sm:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
           <div>
@@ -90,13 +94,9 @@ export default function Home() {
       <FeatureShowcase />
       <PricingCard />
 
-      {/* Closing CTA - deep charcoal band */}
-      <section className="relative overflow-hidden bg-ink">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 h-[360px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/25 blur-3xl"
-        />
-        <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 text-on-ink sm:flex-row sm:items-center sm:justify-between">
+      {/* Closing CTA - deep espresso band */}
+      <section className="glow-ink overflow-hidden bg-ink">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 text-on-ink sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="font-display text-3xl font-medium">
               Your menu could be live by tonight

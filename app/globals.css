@@ -6,10 +6,10 @@
    the menu page wrapper, so it overrides these without a rebuild.
 ------------------------------------------------------------------- */
 :root {
-  --bg: #fbfaf8;
+  --bg: #faf6f0;
   --surface: #ffffff;
-  --surface-2: #f4f2ee;
-  --border: #e7e3dc;
+  --surface-2: #f4efe6;
+  --border: #e8e0d3;
   --text: #1c1a17;
   --text-muted: #6b6560;
   --accent: #b4531f;
@@ -17,34 +17,34 @@
   --danger: #b42318;
   --ok: #1a7f4b;
   --radius: 0.75rem;
-  --shadow: 0 1px 2px rgba(28, 26, 23, 0.06), 0 8px 24px -12px rgba(28, 26, 23, 0.12);
+  --shadow: 0 1px 2px rgba(40, 26, 15, 0.06), 0 14px 34px -14px rgba(40, 26, 15, 0.18);
 
-  /* Deep charcoal band, used sparingly for premium dark sections. */
-  --ink: #211d18;
-  --ink-2: #2d2721;
-  --on-ink: #f6f1e9;
-  --on-ink-muted: #b9ada0;
+  /* Deep espresso band, used sparingly for premium dark sections. */
+  --ink: #1b1611;
+  --ink-2: #26201a;
+  --on-ink: #f7f1e8;
+  --on-ink-muted: #bcae9f;
 
   /* Warm gold, used sparingly for premium accents (badges, glows, dividers). */
-  --gold: #b8873a;
-  --gold-soft: #d8b579;
+  --gold: #c99b52;
+  --gold-soft: #e7cd92;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14120f;
-    --surface: #1c1a17;
-    --surface-2: #242019;
-    --border: #322d26;
+    --bg: #131009;
+    --surface: #1c1813;
+    --surface-2: #241f18;
+    --border: #342d24;
     --text: #f3efe9;
     --text-muted: #a49c92;
     --accent: #e5793c;
     --accent-contrast: #1c1a17;
     --danger: #f97066;
     --ok: #47c48a;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
-    --gold: #d8b579;
-    --gold-soft: #ecd8a8;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 14px 34px -14px rgba(0, 0, 0, 0.55);
+    --gold: #e6c885;
+    --gold-soft: #f3e3bd;
   }
 }
 
@@ -94,6 +94,25 @@ button {
 /* A restaurant can set a brand colour; this class carries it. */
 .themed {
   --accent: var(--brand, #b4531f);
+}
+
+/* Warm "lit from within" wash for the deep espresso bands. The parent
+   sets its own bg-ink fill; this layers a low gold + terracotta glow
+   above that fill but behind the band's content. Parent needs
+   overflow-hidden to clip it. */
+.glow-ink {
+  position: relative;
+  isolation: isolate;
+}
+.glow-ink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(36rem 22rem at 10% -15%, rgba(201, 155, 82, 0.24), transparent 70%),
+    radial-gradient(30rem 20rem at 108% 120%, rgba(180, 83, 31, 0.22), transparent 70%);
 }
 
 /* Print styles for the QR table sheet. */
