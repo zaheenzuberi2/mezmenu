@@ -8,8 +8,8 @@ export default function ContactPage() {
   return (
     <LegalLayout title="Contact" updated="September 2026">
       <p>
-        {BRAND} is run by Zaheen Zuberi. The fastest way to reach us is email or
-        WhatsApp — we usually reply within a day.
+        {BRAND} is run by Zaheen Zuberi. The fastest way to reach us is by email
+        or WhatsApp, and we usually reply within a day.
       </p>
 
       <section className="space-y-2">
@@ -18,11 +18,12 @@ export default function ContactPage() {
           <a className="text-accent" href="mailto:hello@mezmenu.pk">
             hello@mezmenu.pk
           </a>{" "}
-          — for sign-up help, billing, menu changes, or anything else.
+          is the address for sign-up help, billing, menu changes, or anything
+          else.
         </p>
         <p className="text-xs text-text-muted">
-          Don&apos;t see our reply, or a password reset email, in your inbox?
-          Please check your spam or junk folder as well — it sometimes lands
+          If you don&apos;t see our reply, or a password reset email, in your
+          inbox, please check your spam or junk folder too. It sometimes lands
           there.
         </p>
       </section>
@@ -39,7 +40,8 @@ export default function ContactPage() {
             >
               {CONTACT_PHONE_DISPLAY}
             </a>{" "}
-            — send your paper menu and we&apos;ll get you set up.
+            is the number to message. Send your paper menu and we&apos;ll get
+            you set up.
           </p>
         </section>
       )}
@@ -49,9 +51,9 @@ export default function ContactPage() {
           Already a customer?
         </h2>
         <p>
-          Most changes — prices, new dishes, sold-out items, deals — you make
-          yourself from your dashboard, and they go live instantly. Email us if
-          you get stuck.
+          You make most changes yourself from your dashboard, whether that&apos;s
+          a price, a new dish, a sold-out item or a deal, and they go live right
+          away. Email us if you get stuck.
         </p>
       </section>
     </LegalLayout>

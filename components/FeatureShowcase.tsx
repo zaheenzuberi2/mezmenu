@@ -34,8 +34,8 @@ function SoldOutMock() {
         </li>
       </ul>
       <p className="mt-3 flex items-center gap-1.5 text-xs text-accent">
-        <SoldOutIcon className="h-3.5 w-3.5" /> One tap from your dashboard —
-        live everywhere instantly
+        <SoldOutIcon className="h-3.5 w-3.5" /> Change it once and every menu
+        updates
       </p>
     </div>
   );
@@ -60,16 +60,16 @@ function WhatsAppMock() {
           style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
         />
         <div className="relative rounded-xl rounded-tl-none bg-[#d9fdd3] px-3.5 py-3 text-xs leading-relaxed text-[#111b21] shadow-sm">
-          <p className="font-bold">New order — Al-Rehman Tikka House</p>
-          <p className="mt-1 font-bold">Table: 5</p>
-          <p className="mt-1.5">- 1x Chicken Tikka - Rs 320</p>
-          <p>- 1x Malai Boti - Rs 850</p>
-          <p className="mt-1.5 font-semibold">Estimated total: Rs 1,170</p>
+          <p className="font-bold">New order for Al-Rehman Tikka House</p>
+          <p className="mt-1 font-bold">Table 5</p>
+          <p className="mt-1.5">Chicken Tikka &times;1&nbsp;&nbsp;Rs 320</p>
+          <p>Malai Boti &times;1&nbsp;&nbsp;Rs 850</p>
+          <p className="mt-1.5 font-semibold">Total so far: Rs 1,170</p>
         </div>
       </div>
       <p className="mt-3 flex items-center gap-1.5 text-xs text-accent">
-        <TableNumberIcon className="h-3.5 w-3.5" /> Table number attached
-        automatically, every time
+        <TableNumberIcon className="h-3.5 w-3.5" /> Every order tells you which
+        table it came from
       </p>
     </div>
   );
@@ -78,36 +78,36 @@ function WhatsAppMock() {
 const ROW_1_POINTS = [
   {
     icon: PrinterSlashIcon,
-    title: "Stop paying for reprints",
-    body: "Prices move weekly. Update the dashboard — it's live everywhere, instantly.",
+    title: "No more paying for reprints",
+    body: "Flour, fuel and chicken prices change most weeks. Update yours in the dashboard and every menu shows the new price straight away.",
   },
   {
     icon: SoldOutIcon,
     title: "Mark a dish sold out in one tap",
-    body: "Ran out mid-service? Toggle it off. Diners never order what you can't serve.",
+    body: "If you run out of karahi halfway through service, switch it off from your phone and nobody can order it until you're back in stock.",
   },
   {
     icon: PriceTagIcon,
-    title: "Deals and price notes, whenever you want",
-    body: "Ramadan platter today, Eid special tomorrow. One line, no printer needed.",
+    title: "Put up a deal whenever you have one",
+    body: "A Ramadan platter today, an Eid special tomorrow. It's one line of text, with no design software and no trip to the printer.",
   },
 ];
 
 const ROW_2_POINTS = [
   {
     icon: NoCommissionIcon,
-    title: "Zero commission, ever",
-    body: "Orders go straight to your WhatsApp — no middleman, no cut.",
+    title: "No commission, ever",
+    body: "Orders come straight to your WhatsApp, so there's no middleman taking a cut of the bill.",
   },
   {
     icon: TableNumberIcon,
-    title: "Table number, every time",
-    body: "Every table's QR is unique, so every order tells you exactly where it's from.",
+    title: "You always know the table",
+    body: "Each table has its own QR code, so the order that reaches your phone already says where it came from.",
   },
   {
     icon: WhatsAppOrderIcon,
     title: "The app you already use",
-    body: "No new dashboard to learn. Orders arrive on the WhatsApp your staff already watches.",
+    body: "There's nothing new for the kitchen to learn. Orders arrive on the same WhatsApp your staff checks all day.",
   },
 ];
 
@@ -146,11 +146,11 @@ export function FeatureShowcase() {
       {/* Row 1: text left, visual right */}
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            Built for how you actually run the counter
+          <p className="text-sm font-semibold text-accent">
+            Built around how you run the counter
           </p>
           <h2 className="mt-2 font-display text-3xl font-medium">
-            Change a price, not the whole menu
+            Changing a price takes a few seconds
           </h2>
           <PointList points={ROW_1_POINTS} />
         </div>
@@ -165,8 +165,8 @@ export function FeatureShowcase() {
           <WhatsAppMock />
         </div>
         <div className="order-1 lg:order-2">
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            No app to install, no commission to pay
+          <p className="text-sm font-semibold text-accent">
+            Nothing to install
           </p>
           <h2 className="mt-2 font-display text-3xl font-medium">
             Orders land where you already are

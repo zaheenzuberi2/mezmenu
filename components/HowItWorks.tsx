@@ -4,17 +4,17 @@ const STEPS = [
   {
     icon: PhoneEditIcon,
     title: "Build your menu from your phone",
-    body: "Type in your dishes and prices. No design skill needed.",
+    body: "Add your categories, dishes and prices. It takes a few minutes and you don't need any design skills.",
   },
   {
     icon: QrPrintIcon,
-    title: "Print your table QR codes — once",
-    body: "One sheet, every table. Never reprint for a price change again.",
+    title: "Print your table QR codes once",
+    body: "One sheet covers every table, and you never have to reprint it when a price changes.",
   },
   {
     icon: WhatsAppOrderIcon,
-    title: "Diners scan, order, straight to WhatsApp",
-    body: "Orders land on the number you already watch — table number included.",
+    title: "Diners scan, and the order comes to WhatsApp",
+    body: "It arrives on the same number you already keep an eye on, with the table number attached.",
   },
 ];
 
@@ -27,11 +27,9 @@ export function HowItWorks() {
       />
       <div className="relative mx-auto max-w-6xl px-6 py-20">
         <div className="max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            How it works
-          </p>
+          <p className="text-sm font-semibold text-accent">How it works</p>
           <h2 className="mt-2 font-display text-3xl font-medium">
-            Live in one sitting, not one week
+            Most restaurants are set up within a day
           </h2>
         </div>
 

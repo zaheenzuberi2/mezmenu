@@ -3,12 +3,12 @@ import { CheckIcon } from "@/components/icons";
 import { PRICE_STANDARD } from "@/lib/env";
 
 const FEATURES = [
-  "Free setup — we're not charging you to get online",
-  "Zero commission on every order",
-  "Unlimited menu and price updates",
-  "Sold-out toggle, live in one tap",
-  "Direct WhatsApp ordering, table number included",
-  "One QR code + a printable table sheet",
+  "We build your first menu with you, at no cost",
+  "No commission on any order",
+  "Change your menu and prices as often as you like",
+  "Mark anything sold out in one tap",
+  "Orders come to WhatsApp with the table number",
+  "One QR code, plus a printable sheet for your tables",
 ];
 
 export function PricingCard() {
@@ -20,17 +20,15 @@ export function PricingCard() {
       />
       <div className="relative mx-auto max-w-6xl px-6 py-20">
         <div className="mx-auto max-w-lg text-center">
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            Pricing
-          </p>
+          <p className="text-sm font-semibold text-accent">Pricing</p>
           <h2 className="mt-2 font-display text-3xl font-medium">
-            One plan. Nothing hidden.
+            One plan, with nothing hidden
           </h2>
         </div>
 
         <div className="relative mx-auto mt-14 max-w-md">
           <span className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-accent-contrast shadow-lg shadow-accent/30">
-            🔥 Free menu setup included
+            First menu built for you, free
           </span>
 
           <div className="overflow-hidden rounded-[1.5rem] border border-border bg-bg shadow-[var(--shadow)]">
@@ -45,7 +43,7 @@ export function PricingCard() {
                 <span className="pb-1.5 text-on-ink-muted">/ month</span>
               </div>
               <p className="mt-2 text-sm text-on-ink-muted">
-                No card required to build your menu.
+                You don&apos;t need a card to build your menu.
               </p>
             </div>
 
@@ -74,10 +72,10 @@ export function PricingCard() {
                 </span>
                 <p className="text-xs leading-relaxed text-text">
                   <strong className="font-semibold">
-                    We help you load your first menu at no cost.
+                    We&apos;ll load your first menu for you, at no cost.
                   </strong>{" "}
-                  Send your paper menu on WhatsApp — you don&apos;t have to
-                  type it out yourself.
+                  Send your paper menu on WhatsApp and you won&apos;t have to
+                  type any of it out.
                 </p>
               </div>
             </div>

@@ -48,7 +48,7 @@ export function HeroMenuCard() {
 
       {/* deal banner */}
       <div className="mx-4 mt-3 rounded-lg border border-accent/30 bg-accent/10 px-3 py-2 text-xs font-medium text-accent">
-        Ramadan deal: Iftar platter for two — Rs 1,499
+        Ramadan deal: iftar platter for two, Rs 1,499
       </div>
 
       {/* items */}
@@ -93,10 +93,10 @@ export function HeroMenuCard() {
         ))}
       </ul>
 
-      {/* order bar - styled as a real floating action button */}
+      {/* order bar, styled as a real floating action button */}
       <div className="border-t border-border bg-bg/95 p-3 backdrop-blur">
         <div className="flex items-center justify-between rounded-full bg-accent px-4 py-3 text-sm font-semibold text-accent-contrast shadow-lg shadow-accent/30">
-          <span>View order · 2 items</span>
+          <span>View order, 2 items</span>
           <span>Rs 1,170</span>
         </div>
         <p className="mt-2 flex items-center justify-center gap-1 text-[10px] text-text-muted">

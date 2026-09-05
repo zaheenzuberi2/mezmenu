@@ -42,7 +42,7 @@ export function SettingsForm({ restaurant }: { restaurant: Restaurant }) {
           <input
             name="announcement"
             defaultValue={restaurant.announcement}
-            placeholder="Ramadan deal: Iftar platter for two — Rs 1,499"
+            placeholder="Ramadan deal: iftar platter for two, Rs 1,499"
             className={input}
           />
           <span className="mt-1 block text-xs text-text-muted">

@@ -73,11 +73,12 @@ export default function Home() {
                 href="/signup"
                 className="rounded-full border border-border px-6 py-3 font-medium transition-colors hover:border-accent hover:text-accent"
               >
-                Build my menu free →
+                Build my menu free
               </Link>
             </div>
             <p className="mt-5 text-sm text-text-muted">
-              No card required · Setup done for you · Cancel anytime
+              You won&apos;t need a card to start, we help you set everything up,
+              and you can cancel any time.
             </p>
           </div>
 
@@ -94,7 +95,7 @@ export default function Home() {
       <FeatureShowcase />
       <PricingCard />
 
-      {/* Closing CTA - deep espresso band */}
+      {/* Closing CTA, deep espresso band */}
       <section className="glow-ink overflow-hidden bg-ink">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 text-on-ink sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -102,8 +103,8 @@ export default function Home() {
               Your menu could be live by tonight
             </h2>
             <p className="mt-2 max-w-md text-sm text-on-ink-muted">
-              Send your paper menu on WhatsApp — we&apos;ll set it up for you,
-              free.
+              Send us a photo of your paper menu on WhatsApp and we&apos;ll set
+              the whole thing up for you, at no charge.
             </p>
           </div>
           <Link

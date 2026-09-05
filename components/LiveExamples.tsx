@@ -47,9 +47,7 @@ export async function LiveExamples() {
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-              See it live
-            </p>
+            <p className="text-sm font-semibold text-accent">See it live</p>
             <h2 className="mt-2 font-display text-3xl font-medium">
               Real menus, running on MezMenu today
             </h2>
@@ -88,7 +86,7 @@ export async function LiveExamples() {
                 <div className="min-w-0">
                   <p className="text-sm font-medium">Scan to view the menu</p>
                   <p className="mt-0.5 text-sm text-accent opacity-0 transition-opacity group-hover:opacity-100">
-                    Or tap to open →
+                    Or tap to open it
                   </p>
                 </div>
               </div>

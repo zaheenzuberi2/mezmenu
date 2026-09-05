@@ -290,7 +290,7 @@ export function MenuView({
               rel="noopener noreferrer"
               className="hover:text-text"
             >
-              Get one for your restaurant →
+              Get one for your restaurant
             </a>
           )}
         </div>
@@ -304,7 +304,7 @@ export function MenuView({
             className="mx-auto flex w-full max-w-md items-center justify-between rounded-full bg-accent px-5 py-3 font-medium text-accent-contrast"
           >
             <span>
-              View order · {count} {count === 1 ? "item" : "items"}
+              View order, {count} {count === 1 ? "item" : "items"}
             </span>
             {total > 0 && (
               <span className="tabular-nums">
