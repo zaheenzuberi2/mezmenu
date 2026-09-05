@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/LegalLayout";
-import { BRAND } from "@/lib/env";
+import { BRAND, CONTACT_EMAIL } from "@/lib/env";
 
 export const metadata: Metadata = { title: "Privacy Policy" };
 
@@ -14,8 +14,8 @@ export default function PrivacyPage() {
       <p>
         {BRAND} is a QR-menu service for restaurants, operated by Zaheen Zuberi.
         This policy explains what we collect and why. Questions:{" "}
-        <a className="text-accent" href="mailto:hello@mezmenu.pk">
-          hello@mezmenu.pk
+        <a className="text-accent" href={`mailto:${CONTACT_EMAIL}`}>
+          {CONTACT_EMAIL}
         </a>
         .
       </p>

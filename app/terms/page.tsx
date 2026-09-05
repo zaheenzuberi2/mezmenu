@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/LegalLayout";
-import { BRAND, PRICE_STANDARD } from "@/lib/env";
+import { BRAND, CONTACT_EMAIL, PRICE_STANDARD } from "@/lib/env";
 
 export const metadata: Metadata = { title: "Terms & Conditions" };
 
@@ -98,8 +98,8 @@ export default function TermsPage() {
       <section className="space-y-2">
         <H>Contact</H>
         <p>
-          <a className="text-accent" href="mailto:hello@mezmenu.pk">
-            hello@mezmenu.pk
+          <a className="text-accent" href={`mailto:${CONTACT_EMAIL}`}>
+            {CONTACT_EMAIL}
           </a>
         </p>
       </section>

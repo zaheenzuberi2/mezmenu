@@ -78,14 +78,27 @@ export const BRAND = process.env.NEXT_PUBLIC_BRAND ?? "MezMenu";
  * MezMenu's own contact number (digits, international, no "+"), shown on the
  * Contact page and as a subtle link on every diner menu. Empty = hidden.
  */
+const CONTACT_PHONE_DEFAULT = "923461223692";
+
 export const CONTACT_PHONE = (
-  process.env.NEXT_PUBLIC_CONTACT_PHONE ?? ""
+  process.env.NEXT_PUBLIC_CONTACT_PHONE ?? CONTACT_PHONE_DEFAULT
 ).replace(/[^0-9]/g, "");
 
 /** Pretty version for display, e.g. "+92 300 1234567". */
 export const CONTACT_PHONE_DISPLAY =
   process.env.NEXT_PUBLIC_CONTACT_PHONE_DISPLAY ??
-  (CONTACT_PHONE ? `+${CONTACT_PHONE}` : "");
+  (CONTACT_PHONE === CONTACT_PHONE_DEFAULT
+    ? "+92 346 1223692"
+    : CONTACT_PHONE
+      ? `+${CONTACT_PHONE}`
+      : "");
+
+/**
+ * Contact email for support, billing and menu help, and the address people
+ * reach the person who runs {@link BRAND}. Overridable per deployment.
+ */
+export const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@zaheenzuberi.com";
 
 /** Standard package price, display only. */
 export const PRICE_STANDARD =

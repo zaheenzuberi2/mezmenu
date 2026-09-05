@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/LegalLayout";
-import { BRAND, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from "@/lib/env";
+import {
+  BRAND,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+} from "@/lib/env";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -15,8 +20,8 @@ export default function ContactPage() {
       <section className="space-y-2">
         <h2 className="text-base font-semibold text-text">Email</h2>
         <p>
-          <a className="text-accent" href="mailto:hello@mezmenu.pk">
-            hello@mezmenu.pk
+          <a className="text-accent" href={`mailto:${CONTACT_EMAIL}`}>
+            {CONTACT_EMAIL}
           </a>{" "}
           is the address for sign-up help, billing, menu changes, or anything
           else.
